@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset='utf-8' />
+
+    <title>Tidal Thames</title>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id='map'>
+
+	    <div id="attribution" class="mapboxgl-ctrl mapboxgl-ctrl-attrib mapboxgl-ctrl-bottom-right" style="position: fixed; bottom: 0; right: 0px;">
+	        <a href="*">2020 © Thames Estuary Partnership</a>
+	    </div>
+
+</div>
+
+<div class='map-overlay' id='legend'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2FuZGFib2RuYXIiLCJhIjoiY2p0NXU3djg5MDNrZzN6bnpoaGx6MmMzMCJ9.1ZSsBHP1VNrORNIN_p0_Xg';
+
+var animationStep = 40;
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/wandabodnar/cjttwb02u011x1fpjvtactgmt',
+		attributionControl: false,
+		center: [0.2, 51.5],
+		pitch: 45,
+    bearing: 0,
+		zoom: 10
+});
+
+function rotateCamera(timestamp) {
+    map.rotateTo((timestamp / 500) % 360, {duration: 0});
+    requestAnimationFrame(rotateCamera);
+}
+map.on('load', function () {
+    rotateCamera(0);
+});
+
+
+</script>
+
+</body>
+</html>
